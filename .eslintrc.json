@@ -29,7 +29,8 @@
     "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
         "react/prefer-stateless-function": [0],
-        "no-param-reassign": "warn"
+        "no-param-reassign": "warn",
+        "no-lonely-if": "off"
     },
     "overrides": [
         {

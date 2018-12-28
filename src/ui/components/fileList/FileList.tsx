@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import Typography from '@material-ui/core/Typography/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Tree from 'rc-tree';
-// eslint-ignore
 import 'UI/style/tree.css';
 
 import { upgradeFileList, FileListItem } from './util/FileListAdapter';
@@ -13,8 +12,8 @@ const FileListWrapper = styled.div`
     flex: 7;
     height: 100%;
     flex-direction: column;
-    border-right: 1px solid black;
     overflow: scroll;
+    background-color: #FAFAFA;
 `;
 
 const Title = styled.div`

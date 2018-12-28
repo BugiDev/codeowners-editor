@@ -2,6 +2,7 @@ import carlo from 'carlo';
 import path from 'path';
 
 import { dirTree } from './fileTree';
+import {readCodeownersFile} from './codeowners/CodeownersReader';
 
 export default async function launchUIBridge(devMode: boolean) {
     const app = await carlo.launch();
@@ -18,6 +19,7 @@ export default async function launchUIBridge(devMode: boolean) {
     const absolutePath = path.resolve('./');
 
     await app.exposeFunction('getDirStructure', () => dirTree(absolutePath));
+    await app.exposeFunction('readCodeownersFile', () => readCodeownersFile());
 
     // Navigate to the main page of your app.
     await app.load('../../index.html');

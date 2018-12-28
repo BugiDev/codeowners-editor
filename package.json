@@ -1,11 +1,15 @@
 {
   "name": "codeowners-editor",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "dist/index.js",
   "repository": "https://github.com/BugiDev/codeowners-editor.git",
   "author": "Bogdan Begovic <bogdanbegovic@gmail.com>",
   "license": "MIT",
   "typings": "src/@types",
+  "bin": {
+    "codeowners-editor": "./dist/index.js"
+  },
+  "preferGlobal": true,
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
@@ -28,6 +32,8 @@
     "@types/node": "^10.12.11",
     "@types/react": "^16.7.11",
     "@types/react-dom": "^16.0.11",
+    "@types/react-redux": "^6.0.11",
+    "@types/redux-logger": "^3.0.6",
     "@types/webpack-env": "^1.13.6",
     "awesome-typescript-loader": "^5.2.1",
     "babel": "^6.23.0",
@@ -71,6 +77,9 @@
     "rc-tree": "^1.14.8",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-icons": "^3.2.2"
+    "react-icons": "^3.2.2",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6"
   }
 }

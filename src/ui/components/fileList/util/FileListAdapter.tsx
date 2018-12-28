@@ -29,21 +29,21 @@ function addIcon(fileListItem: FileListItem): void {
         fileListItem.icon = (props: any) => {
             const { expanded } = props;
             if (expanded) {
-                return <FolderOpenIcon />;
+                return <FolderOpenIcon fontSize='small' />;
             }
-            return <FolderIcon />;
+            return <FolderIcon fontSize='small' />;
         };
         if (fileListItem.children.length > 0) {
             fileListItem.switcherIcon = (props: any) => {
                 const { expanded } = props;
                 if (expanded) {
-                    return <RemoveIcon />;
+                    return <RemoveIcon fontSize='small' />;
                 }
-                return <AddIcon />;
+                return <AddIcon fontSize='small' />;
             };
         }
     } else {
-        fileListItem.icon = () => <FileIcon />;
+        fileListItem.icon = () => <FileIcon fontSize='small' />;
     }
 }
 
