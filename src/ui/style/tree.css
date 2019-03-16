@@ -88,9 +88,9 @@
     cursor: not-allowed;
 }
 .rc-tree-node-selected {
-    background-color: #ffe6b0;
-    border: 1px #ffb951 solid;
-    opacity: 0.8;
+    background-color: rgba(40,167,69, 0.3);
+    border: 1px #28a745 solid;
+    padding: 4px;
 }
 .rc-tree-icon__open {
     margin-right: 2px;

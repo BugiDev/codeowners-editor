@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const aliasConfig = require('./webpack.alias');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = merge(aliasConfig, {
     mode: 'development',
@@ -18,6 +19,7 @@ module.exports = merge(aliasConfig, {
     },
     devServer: {
         host: '127.0.0.1',
+        disableHostCheck: true,
         contentBase: path.join(__dirname, 'ui'),
         compress: true,
         port: 9000,
@@ -54,5 +56,6 @@ module.exports = merge(aliasConfig, {
             filename: 'index.html', // target html
             template: './src/ui/index.html', // source html
         }),
+        new CleanWebpackPlugin(),
     ],
 });

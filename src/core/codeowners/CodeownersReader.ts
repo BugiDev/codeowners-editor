@@ -4,6 +4,7 @@ import path from 'path';
 
 export interface CodeownersLine{
     path: string;
+    absolutePath: string;
     codeowners: string[];
 }
 
@@ -11,6 +12,7 @@ export interface CodeownersFile{
     lines: CodeownersLine[];
     allCodeowners: string[];
     fileExists: boolean;
+    rawCodeowners: string;
 }
 
 const codeownersRootLocation = path.resolve(process.cwd(),  'CODEOWNERS');
@@ -32,6 +34,7 @@ async function processLineByLine(filepath: string): Promise<{lines: CodeownersLi
             const codeownersSubarray = splitLine.slice(1);
             codeownersSubarray.forEach((codeowner) => {allCodeowners.add(codeowner)});
             lines.push({
+                absolutePath:  path.resolve('./', splitLine[0]),
                 path: splitLine[0],
                 codeowners: codeownersSubarray
             } as CodeownersLine);
@@ -51,18 +54,22 @@ export async function readCodeownersFile(): Promise<CodeownersFile> {
         lines: [] as CodeownersLine[],
         allCodeowners: [] as string[]
     };
+    let rawCodeowners = '';
     if (fs.existsSync(codeownersRootLocation)) {
         processedLines = await processLineByLine(codeownersRootLocation);
         fileExists = true;
+        rawCodeowners = fs.readFileSync(codeownersRootLocation, 'utf8');
     } else {
         if (fs.existsSync(codeownersGitHubLocation)) {
             processedLines = await processLineByLine(codeownersGitHubLocation);
             fileExists = true;
+            rawCodeowners = fs.readFileSync(codeownersGitHubLocation, 'utf8');
         }
     }
     return {
         lines: processedLines.lines,
         allCodeowners: processedLines.allCodeowners,
-        fileExists
+        fileExists,
+        rawCodeowners
     }
 }

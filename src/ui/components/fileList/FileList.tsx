@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import styled from '@emotion/styled';
 import Typography from '@material-ui/core/Typography/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Tree from 'rc-tree';
 import 'UI/style/tree.css';
 
-import { upgradeFileList, FileListItem } from './util/FileListAdapter';
+import {upgradeFileList, FileListItem} from './util/FileListAdapter';
 
 const FileListWrapper = styled.div`
     display: flex;
@@ -29,7 +29,9 @@ const LoaderWrapper = styled.div`
     align-items: center;
 `;
 
-interface FileListProps {}
+interface FileListProps {
+    select: (selectedPath: string) => void
+}
 
 interface FileListState {
     data: FileListItem[];
@@ -60,11 +62,12 @@ class FileList extends Component<FileListProps, FileListState> {
 
     render() {
         let content: JSX.Element;
-        const { data } = this.state;
+        const {data} = this.state;
+        const {select} = this.props;
         if (data.length < 1) {
             content = (
                 <LoaderWrapper>
-                    <CircularProgress size={70} />
+                    <CircularProgress size={70}/>
                 </LoaderWrapper>
             );
         } else {
@@ -74,6 +77,11 @@ class FileList extends Component<FileListProps, FileListState> {
                     defaultExpandedKeys={[data && data[0].key]}
                     showLine
                     treeData={data}
+                    onSelect={
+                        (selectedKeys: string[]) => {
+                            select(selectedKeys[0]);
+                        }
+                    }
                 />
             );
         }

@@ -1,5 +1,7 @@
-testing @BugiDev
+dist @BugiDev
 
 src @Person2
+
+webpack @BugiDev @Person2
 
  # Testing
